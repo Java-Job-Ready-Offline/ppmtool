@@ -2,6 +2,7 @@ package com.hostmdy.ppm.domain;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -41,7 +42,9 @@ public class ProjectTask {
 	@Enumerated(EnumType.STRING)
 	private Status status;
 	
-	private Integer priority;
+	private Integer priority = 0;
+	
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate dueDate;
 	
 	@Column(updatable = false)

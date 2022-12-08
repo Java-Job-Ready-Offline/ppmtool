@@ -107,11 +107,12 @@ public class ProjectServiceImpl implements ProjectService{
 	public void flashDelete(String identifier,String username) {
 		// TODO Auto-generated method stub
 		Optional<Project> projectOptional = projectRepository.findByProjectIdentifier(identifier);
-		Project project = projectOptional.get();
-
+		
 		if (projectOptional.isEmpty())
 			throw new ProjectIdException("Project with id=" + identifier + " does not exist");
 
+		Project project = projectOptional.get();
+		
 		if (projectOptional.isPresent() && (!projectOptional.get().getProjectLeader().equals(username)))
 			throw new ProjectNotFoundException("Project is not found in your account");
 		

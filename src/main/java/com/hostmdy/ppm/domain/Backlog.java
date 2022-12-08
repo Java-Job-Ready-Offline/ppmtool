@@ -26,7 +26,7 @@ public class Backlog {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Integer pTSequence;
+	private Integer pTSequence=0;
 	
 	@Column(updatable = false)
 	private String projectIdentifier;
