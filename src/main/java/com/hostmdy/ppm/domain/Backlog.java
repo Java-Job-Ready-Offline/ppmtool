@@ -35,6 +35,8 @@ public class Backlog {
 	@JoinColumn(name = "project_id"/*,nullable = false*/)
 	private Project project;
 	
+	private String status="active";
+	
 	@OneToMany(mappedBy = "backlog",cascade = CascadeType.REFRESH,
 			fetch = FetchType.EAGER,orphanRemoval = true)
 	@JsonIgnore

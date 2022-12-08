@@ -49,6 +49,8 @@ public class Project {
 	private LocalDate endDate;
 	private LocalDate createdAt;
 	private LocalDate updatedAt;
+	private String projectLeader;
+	private String status = "active";
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
