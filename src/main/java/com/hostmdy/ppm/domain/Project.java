@@ -42,10 +42,10 @@ public class Project {
 	@NotBlank(message = "Description should not be blank")
 	private String description;
 	
-	@JsonFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate startDate;
 	
-	@JsonFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate endDate;
 	private LocalDate createdAt;
 	private LocalDate updatedAt;

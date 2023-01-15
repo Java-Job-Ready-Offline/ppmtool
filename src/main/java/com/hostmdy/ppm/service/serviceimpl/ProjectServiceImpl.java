@@ -37,9 +37,15 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		User user = userRepository.findByUsername(username).get();
 		String projectIdentifier = project.getProjectIdentifier().toUpperCase();
-		Long projectId = project.getId();
 		
-		if(projectId != null) {
+		Optional<Project> projectOpt = projectRepository.findByProjectIdentifier(projectIdentifier);
+		
+		Long projectId = 0L;
+		
+		if(projectOpt.isPresent())
+			projectId = projectOpt.get().getId();
+		
+		if(projectId != 0) {
 			Optional<Project> existedProjectOpt = projectRepository.findById(projectId);
 			
 			if(existedProjectOpt.isPresent() && 
@@ -59,6 +65,7 @@ public class ProjectServiceImpl implements ProjectService{
 			project.setBacklog(backlog);
 			backlog.setProject(project);
 			
+			project.setId(projectId);
 			project.setProjectLeader(username);
 			project.setProjectIdentifier(projectIdentifier);
 			
@@ -86,7 +93,13 @@ public class ProjectServiceImpl implements ProjectService{
 	@Override
 	public List<Project> findAll(String username) {
 		// TODO Auto-generated method stub
-		return projectRepository.findByProjectLeader(username);
+		List<Project> projects = projectRepository.findByProjectLeader(username);
+		
+		List<Project> activeProjects = projects.stream()
+				.filter(p -> p.getStatus().equals("active"))
+				.toList();
+		
+		return activeProjects;
 	}
 
 	@Override
