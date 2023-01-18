@@ -91,7 +91,7 @@ public class ProjectTaskController {
 			@PathVariable String sequence,Principal principal){
 		projectTaskService.deleteProjectTask(identifier, sequence, principal.getName());
 		
-		return new ResponseEntity<String>("projectTask with id="+sequence+" is deleted",HttpStatus.OK);
+		return new ResponseEntity<String>(sequence,HttpStatus.OK);
 		
 	}
 	

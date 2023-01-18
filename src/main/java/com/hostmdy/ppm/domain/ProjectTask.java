@@ -30,7 +30,6 @@ public class ProjectTask {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank(message = "project sequence is required")
 	@Column(updatable = false,unique = true)
 	private String projectSequence;
 	
@@ -44,7 +43,7 @@ public class ProjectTask {
 	
 	private Integer priority = 0;
 	
-	@JsonFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dueDate;
 	
 	@Column(updatable = false)

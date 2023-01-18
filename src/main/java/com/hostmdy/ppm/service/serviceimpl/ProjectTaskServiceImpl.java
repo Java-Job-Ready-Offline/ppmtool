@@ -113,6 +113,7 @@ public class ProjectTaskServiceImpl implements ProjectTaskService{
 				throw new ProjectIdException("projectTask with id="+sequence+" does not exist");
 		
 		//project - backlog
+		projectTask.setId(pTOptional.get().getId());
 		projectTask.setBacklog(backlog);
 		backlog.getProjectTasks().add(projectTask);
 		
